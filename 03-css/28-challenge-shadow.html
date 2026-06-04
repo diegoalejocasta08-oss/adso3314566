@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Michi - Pixel Art (25x25) | box-shadow challenge</title>
+  <title>Michi - Pixel Art (25x25) | Gato Negro + Manzana</title>
   <style>
     * {
       margin: 0;
@@ -22,7 +22,7 @@
       padding: 2rem 1rem;
     }
 
-    /* Botón home con la ruta solicitada */
+    /* Botón home */
     .btn-home {
       position: fixed;
       top: 20px;
@@ -49,7 +49,6 @@
       display: block;
     }
 
-    /* MAIN CONTENT */
     main {
       text-align: center;
       max-width: 700px;
@@ -90,7 +89,7 @@
       letter-spacing: 1px;
     }
 
-    /* FRAME: 25x25 grid, each cell = 20px -> 500x500px */
+    /* FRAME: 25x25 grid, cada celda = 20px -> 500x500px */
     .frame {
       background-color: #000000;
       width: calc(25 * 20px);
@@ -102,7 +101,7 @@
       transition: transform 0.2s ease;
     }
 
-    /* contenedor de píxeles (box-shadow) */
+    /* Contenedor de píxeles utilizando únicamente CSS (box-shadow) */
     .escultura {
       position: absolute;
       width: 20px;
@@ -112,9 +111,54 @@
       background: transparent;
       pointer-events: none;
       z-index: 10;
+      
+      /* Dibujo detallado renderizado píxel por píxel con CSS puro */
+      box-shadow:
+        /* === MARCO EXTERIOR BLANCO === */
+        0px 0px 0px #F0F0F0, 20px 0px 0px #F0F0F0, 40px 0px 0px #F0F0F0, 60px 0px 0px #F0F0F0, 80px 0px 0px #F0F0F0, 100px 0px 0px #F0F0F0, 120px 0px 0px #F0F0F0, 140px 0px 0px #F0F0F0, 160px 0px 0px #F0F0F0, 180px 0px 0px #F0F0F0, 200px 0px 0px #F0F0F0, 220px 0px 0px #F0F0F0, 240px 0px 0px #F0F0F0, 260px 0px 0px #F0F0F0, 280px 0px 0px #F0F0F0, 300px 0px 0px #F0F0F0, 320px 0px 0px #F0F0F0, 340px 0px 0px #F0F0F0, 360px 0px 0px #F0F0F0, 380px 0px 0px #F0F0F0, 400px 0px 0px #F0F0F0, 420px 0px 0px #F0F0F0, 440px 0px 0px #F0F0F0, 460px 0px 0px #F0F0F0, 480px 0px 0px #F0F0F0,
+        0px 480px 0px #F0F0F0, 20px 480px 0px #F0F0F0, 40px 480px 0px #F0F0F0, 60px 480px 0px #F0F0F0, 80px 480px 0px #F0F0F0, 100px 480px 0px #F0F0F0, 120px 480px 0px #F0F0F0, 140px 480px 0px #F0F0F0, 160px 480px 0px #F0F0F0, 180px 480px 0px #F0F0F0, 200px 480px 0px #F0F0F0, 220px 480px 0px #F0F0F0, 240px 480px 0px #F0F0F0, 260px 480px 0px #F0F0F0, 280px 480px 0px #F0F0F0, 300px 480px 0px #F0F0F0, 320px 480px 0px #F0F0F0, 340px 480px 0px #F0F0F0, 360px 480px 0px #F0F0F0, 380px 480px 0px #F0F0F0, 400px 480px 0px #F0F0F0, 420px 480px 0px #F0F0F0, 440px 480px 0px #F0F0F0, 460px 480px 0px #F0F0F0, 480px 480px 0px #F0F0F0,
+        0px 20px 0px #F0F0F0, 0px 40px 0px #F0F0F0, 0px 60px 0px #F0F0F0, 0px 80px 0px #F0F0F0, 0px 100px 0px #F0F0F0, 0px 120px 0px #F0F0F0, 0px 140px 0px #F0F0F0, 0px 160px 0px #F0F0F0, 0px 180px 0px #F0F0F0, 0px 200px 0px #F0F0F0, 0px 220px 0px #F0F0F0, 0px 240px 0px #F0F0F0, 0px 260px 0px #F0F0F0, 0px 280px 0px #F0F0F0, 0px 300px 0px #F0F0F0, 0px 320px 0px #F0F0F0, 0px 340px 0px #F0F0F0, 0px 360px 0px #F0F0F0, 0px 380px 0px #F0F0F0, 0px 400px 0px #F0F0F0, 0px 420px 0px #F0F0F0, 0px 440px 0px #F0F0F0, 0px 460px 0px #F0F0F0,
+        480px 20px 0px #F0F0F0, 480px 40px 0px #F0F0F0, 480px 60px 0px #F0F0F0, 480px 80px 0px #F0F0F0, 480px 100px 0px #F0F0F0, 480px 120px 0px #F0F0F0, 480px 140px 0px #F0F0F0, 480px 160px 0px #F0F0F0, 480px 180px 0px #F0F0F0, 480px 200px 0px #F0F0F0, 480px 220px 0px #F0F0F0, 480px 240px 0px #F0F0F0, 480px 260px 0px #F0F0F0, 480px 280px 0px #F0F0F0, 480px 300px 0px #F0F0F0, 480px 320px 0px #F0F0F0, 480px 340px 0px #F0F0F0, 480px 360px 0px #F0F0F0, 480px 380px 0px #F0F0F0, 480px 400px 0px #F0F0F0, 480px 420px 0px #F0F0F0, 480px 440px 0px #F0F0F0, 480px 460px 0px #F0F0F0,
+
+        /* === BORDES INTERIORES GRIS SUAVE === */
+        20px 20px 0px #D4D4DC, 40px 20px 0px #D4D4DC, 60px 20px 0px #D4D4DC, 80px 20px 0px #D4D4DC, 100px 20px 0px #D4D4DC, 120px 20px 0px #D4D4DC, 140px 20px 0px #D4D4DC, 160px 20px 0px #D4D4DC, 180px 20px 0px #D4D4DC, 200px 20px 0px #D4D4DC, 220px 20px 0px #D4D4DC, 240px 20px 0px #D4D4DC, 260px 20px 0px #D4D4DC, 280px 20px 0px #D4D4DC, 300px 20px 0px #D4D4DC, 320px 20px 0px #D4D4DC, 340px 20px 0px #D4D4DC, 360px 20px 0px #D4D4DC, 380px 20px 0px #D4D4DC, 400px 20px 0px #D4D4DC, 420px 20px 0px #D4D4DC, 440px 20px 0px #D4D4DC, 460px 20px 0px #D4D4DC,
+        20px 460px 0px #D4D4DC, 40px 460px 0px #D4D4DC, 60px 460px 0px #D4D4DC, 80px 460px 0px #D4D4DC, 100px 460px 0px #D4D4DC, 120px 460px 0px #D4D4DC, 140px 460px 0px #D4D4DC, 160px 460px 0px #D4D4DC, 180px 460px 0px #D4D4DC, 200px 460px 0px #D4D4DC, 220px 460px 0px #D4D4DC, 240px 460px 0px #D4D4DC, 260px 460px 0px #D4D4DC, 280px 460px 0px #D4D4DC, 300px 460px 0px #D4D4DC, 320px 460px 0px #D4D4DC, 340px 460px 0px #D4D4DC, 360px 460px 0px #D4D4DC, 380px 460px 0px #D4D4DC, 400px 460px 0px #D4D4DC, 420px 460px 0px #D4D4DC, 440px 460px 0px #D4D4DC, 460px 460px 0px #D4D4DC,
+        20px 40px 0px #D4D4DC, 20px 60px 0px #D4D4DC, 20px 80px 0px #D4D4DC, 20px 100px 0px #D4D4DC, 20px 120px 0px #D4D4DC, 20px 140px 0px #D4D4DC, 20px 160px 0px #D4D4DC, 20px 180px 0px #D4D4DC, 20px 200px 0px #D4D4DC, 20px 220px 0px #D4D4DC, 20px 240px 0px #D4D4DC, 20px 260px 0px #D4D4DC, 20px 280px 0px #D4D4DC, 20px 300px 0px #D4D4DC, 20px 320px 0px #D4D4DC, 20px 340px 0px #D4D4DC, 20px 360px 0px #D4D4DC, 20px 380px 0px #D4D4DC, 20px 400px 0px #D4D4DC, 20px 420px 0px #D4D4DC, 20px 440px 0px #D4D4DC,
+        460px 40px 0px #D4D4DC, 460px 60px 0px #D4D4DC, 460px 80px 0px #D4D4DC, 460px 100px 0px #D4D4DC, 460px 120px 0px #D4D4DC, 460px 140px 0px #D4D4DC, 460px 160px 0px #D4D4DC, 460px 180px 0px #D4D4DC, 460px 200px 0px #D4D4DC, 460px 220px 0px #D4D4DC, 460px 240px 0px #D4D4DC, 460px 260px 0px #D4D4DC, 460px 280px 0px #D4D4DC, 460px 300px 0px #D4D4DC, 460px 320px 0px #D4D4DC, 460px 340px 0px #D4D4DC, 460px 360px 0px #D4D4DC, 460px 380px 0px #D4D4DC, 460px 400px 0px #D4D4DC, 460px 420px 0px #D4D4DC, 460px 440px 0px #D4D4DC,
+
+        /* ========== MANZANA ROJA ========== */
+        380px 60px 0px #5A6E1A, 400px 60px 0px #6B8E23,
+        400px 80px 0px #8B5A2B, 420px 60px 0px #6B8E23,
+        380px 100px 0px #AA2E1C, 400px 100px 0px #E63E2E, 420px 100px 0px #E63E2E, 440px 100px 0px #AA2E1C,
+        360px 120px 0px #AA2E1C, 380px 120px 0px #FF8A6E, 400px 120px 0px #E63E2E, 420px 120px 0px #E63E2E, 440px 120px 0px #E63E2E, 460px 120px 0px #AA2E1C,
+        360px 140px 0px #AA2E1C, 380px 140px 0px #FF7A5A, 400px 140px 0px #E63E2E, 420px 140px 0px #E63E2E, 440px 140px 0px #E63E2E, 460px 140px 0px #AA2E1C,
+        360px 160px 0px #AA2E1C, 380px 160px 0px #E63E2E, 400px 160px 0px #E63E2E, 420px 160px 0px #E63E2E, 440px 160px 0px #E63E2E, 460px 160px 0px #AA2E1C,
+        380px 180px 0px #AA2E1C, 400px 180px 0px #AA2E1C, 420px 180px 0px #AA2E1C, 440px 180px 0px #AA2E1C,
+
+        /* ========== GATO NEGRO ========== */
+        140px 160px 0px #111, 240px 160px 0px #111,
+        120px 180px 0px #111, 140px 180px 0px #FF8C8C, 160px 180px 0px #111, 220px 180px 0px #111, 240px 180px 0px #FF8C8C, 260px 180px 0px #111,
+        120px 200px 0px #111, 140px 200px 0px #FF8C8C, 160px 200px 0px #111, 220px 200px 0px #111, 240px 200px 0px #FF8C8C, 260px 200px 0px #111,
+        120px 220px 0px #111, 140px 220px 0px #111, 160px 220px 0px #111, 180px 220px 0px #111, 200px 220px 0px #111, 220px 220px 0px #111, 240px 220px 0px #111, 260px 220px 0px #111,
+        120px 240px 0px #111, 140px 240px 0px #FFD966, 160px 240px 0px #000, 180px 240px 0px #111, 200px 240px 0px #111, 220px 240px 0px #FFD966, 240px 240px 0px #000, 260px 240px 0px #111,
+        120px 260px 0px #111, 140px 260px 0px #FFD966, 160px 260px 0px #FFD966, 180px 260px 0px #111, 200px 260px 0px #111, 220px 260px 0px #FFD966, 240px 260px 0px #FFD966, 260px 260px 0px #111,
+        120px 280px 0px #111, 140px 280px 0px #111, 160px 280px 0px #111, 180px 280px 0px #FF8C8C, 200px 280px 0px #111, 220px 280px 0px #111, 240px 280px 0px #111, 260px 280px 0px #111,
+        60px 280px 0px #F0F0F0, 80px 280px 0px #F0F0F0, 100px 280px 0px #F0F0F0, 280px 280px 0px #F0F0F0, 300px 280px 0px #F0F0F0, 320px 280px 0px #F0F0F0,
+        140px 300px 0px #111, 160px 300px 0px #F0F0F0, 180px 300px 0px #111, 200px 300px 0px #F0F0F0, 220px 300px 0px #111, 240px 300px 0px #111,
+        140px 320px 0px #111, 160px 320px 0px #111, 180px 320px 0px #111, 200px 320px 0px #111, 220px 320px 0px #111, 240px 320px 0px #111,
+        120px 340px 0px #111, 140px 340px 0px #111, 160px 340px 0px #444, 180px 340px 0px #444, 200px 340px 0px #444, 220px 340px 0px #111, 240px 340px 0px #111, 260px 340px 0px #111,
+        100px 360px 0px #111, 120px 360px 0px #111, 140px 360px 0px #111, 160px 340px 0px #444, 180px 360px 0px #111, 200px 360px 0px #111, 220px 360px 0px #111, 240px 360px 0px #111, 260px 360px 0px #111,
+        100px 380px 0px #111, 120px 380px 0px #111, 140px 380px 0px #111, 200px 380px 0px #111, 220px 380px 0px #111, 240px 380px 0px #111, 260px 380px 0px #111,
+        100px 400px 0px #111, 120px 400px 0px #111, 140px 400px 0px #111, 200px 400px 0px #111, 220px 400px 0px #111, 240px 400px 0px #111, 260px 400px 0px #111,
+        80px 420px 0px #111, 100px 420px 0px #444, 120px 420px 0px #111, 140px 420px 0px #111, 180px 420px 0px #111, 200px 420px 0px #111, 220px 420px 0px #444, 240px 420px 0px #111, 260px 420px 0px #111,
+        80px 440px 0px #111, 100px 440px 0px #111, 120px 440px 0px #111, 140px 440px 0px #111, 180px 440px 0px #111, 200px 440px 0px #111, 220px 440px 0px #111, 240px 440px 0px #111, 260px 440px 0px #111,
+
+        /* === ELEMENTOS DE AMBIENTACIÓN === */
+        60px 80px 0px #EBC47A, 320px 80px 0px #EBC47A, 80px 160px 0px #EBC47A, 320px 20px 0px #EBC47A,
+        380px 420px 0px #D4D4DC, 420px 420px 0px #D4D4DC, 400px 440px 0px #D4D4DC;
     }
 
-    /* cuadrícula sutil estilo retro */
+    /* Cuadrícula sutil estilo retro */
     .grid-overlay {
       position: absolute;
       inset: 0;
@@ -139,11 +183,6 @@
       font-weight: 500;
     }
 
-    .art-caption span {
-      color: #ff9f6e;
-      font-weight: bold;
-    }
-
     footer {
       margin-top: 2rem;
       font-size: 0.7rem;
@@ -162,7 +201,6 @@
 </head>
 <body>
 
-<!-- Botón home con la ruta correcta: "../03-css/" -->
 <a href="../03-css/" class="btn-home" aria-label="home">
   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256">
     <path d="M240,208H224V136l2.34,2.34A8,8,0,0,0,237.66,127L139.31,28.68a16,16,0,0,0-22.62,0L18.34,127a8,8,0,0,0,11.32,11.31L32,136v72H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM48,120l80-80,80,80v88H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48Zm96,88H112V160h32Z"/>
@@ -171,151 +209,26 @@
 
 <main>
   <header>
-    <h1>📓 D E A T H · N O T E</h1>
+    <h1>🐈⬛ M I C H I · N E G R O</h1>
     <h2>
-      pixel art: the shinigami's notebook
-      <small>✦ 25x25 grid · pure box-shadow ✦</small>
+      pixel art: gato negro & manzana
+      <small>✦ 25x25 grid · solo CSS + box-shadow ✦</small>
     </h2>
   </header>
 
   <section>
     <figure class="frame">
-      <div class="escultura" id="deathNotePixelArt"></div>
+      <div class="escultura"></div>
       <div class="grid-overlay"></div>
     </figure>
     <div class="art-caption">
-      🍎 michi · black edition · gato & runes 🕯️
+      🍎 gato negro · manzana roja · ojos brillantes 🐾
     </div>
   </section>
   <footer>
-    🖤 25x25 | cada píxel = 20px | cuaderno icónico + "DN" + gato negro
+    🖤 25x25 | cada píxel = 20px | diseño original con box-shadow
   </footer>
 </main>
 
-<script>
-  (function() {
-    // ---------- PIXEL ART DEATH NOTE (25x25) ----------
-    const WHITE = "#F0F0F0";
-    const SOFT_WHITE = "#D4D4DC";
-    const RED_APPLE = "#E63E2E";
-    const DARK_RED = "#AA2E1C";
-    const LEAF_GREEN = "#6B8E23";
-    const STEM_BROWN = "#8B5A2B";
-    const GOLD_DETAIL = "#EBC47A";
-    
-    let pixelGrid = Array(25).fill().map(() => Array(25).fill(null));
-    
-    // ---- Bordes (cubierta del cuaderno) ----
-    for (let x = 0; x < 25; x++) {
-      pixelGrid[0][x] = WHITE;
-      pixelGrid[24][x] = WHITE;
-    }
-    for (let y = 0; y < 25; y++) {
-      pixelGrid[y][0] = WHITE;
-      pixelGrid[y][24] = WHITE;
-    }
-    for (let x = 1; x < 24; x++) {
-      pixelGrid[1][x] = SOFT_WHITE;
-      pixelGrid[23][x] = SOFT_WHITE;
-    }
-    for (let y = 1; y < 24; y++) {
-      pixelGrid[y][1] = SOFT_WHITE;
-      pixelGrid[y][23] = SOFT_WHITE;
-    }
-    
-    // ---- Letras "DN" ----
-    // D
-    for (let row = 9; row <= 15; row++) pixelGrid[row][6] = WHITE;
-    for (let col = 6; col <= 10; col++) pixelGrid[9][col] = WHITE;
-    for (let col = 6; col <= 10; col++) pixelGrid[15][col] = WHITE;
-    for (let row = 10; row <= 14; row++) pixelGrid[row][10] = WHITE;
-    pixelGrid[10][9] = WHITE; pixelGrid[11][9] = WHITE; pixelGrid[12][9] = WHITE;
-    pixelGrid[13][9] = WHITE; pixelGrid[14][9] = WHITE;
-    pixelGrid[11][8] = SOFT_WHITE; pixelGrid[12][8] = SOFT_WHITE; pixelGrid[13][8] = SOFT_WHITE;
-    // N
-    for (let row = 9; row <= 15; row++) pixelGrid[row][16] = WHITE;
-    for (let row = 9; row <= 15; row++) pixelGrid[row][20] = WHITE;
-    pixelGrid[9][20] = WHITE; pixelGrid[10][17] = WHITE; pixelGrid[11][18] = WHITE;
-    pixelGrid[12][19] = WHITE; pixelGrid[13][20] = WHITE;
-    for (let row = 10; row <= 14; row++) pixelGrid[row][16] = WHITE;
-    pixelGrid[14][20] = WHITE; pixelGrid[10][18] = SOFT_WHITE; pixelGrid[11][19] = SOFT_WHITE;
-    pixelGrid[13][19] = SOFT_WHITE;
-    
-    // detalles dorados
-    pixelGrid[7][8] = GOLD_DETAIL; pixelGrid[7][18] = GOLD_DETAIL;
-    pixelGrid[17][8] = GOLD_DETAIL; pixelGrid[17][18] = GOLD_DETAIL;
-    
-    // ---- Manzana (Ryuk) ----
-    pixelGrid[2][19] = RED_APPLE;   pixelGrid[2][20] = RED_APPLE;   pixelGrid[2][21] = RED_APPLE;
-    pixelGrid[3][18] = RED_APPLE;   pixelGrid[3][19] = RED_APPLE;   pixelGrid[3][20] = RED_APPLE;
-    pixelGrid[3][21] = RED_APPLE;   pixelGrid[3][22] = RED_APPLE;
-    pixelGrid[4][18] = RED_APPLE;   pixelGrid[4][19] = RED_APPLE;   pixelGrid[4][20] = RED_APPLE;
-    pixelGrid[4][21] = RED_APPLE;   pixelGrid[4][22] = RED_APPLE;
-    pixelGrid[5][18] = RED_APPLE;   pixelGrid[5][19] = RED_APPLE;   pixelGrid[5][20] = RED_APPLE;
-    pixelGrid[5][21] = RED_APPLE;   pixelGrid[5][22] = RED_APPLE;
-    pixelGrid[6][19] = RED_APPLE;   pixelGrid[6][20] = RED_APPLE;   pixelGrid[6][21] = RED_APPLE;
-    pixelGrid[6][18] = DARK_RED;    pixelGrid[3][17] = DARK_RED;    pixelGrid[4][17] = DARK_RED;
-    pixelGrid[2][22] = DARK_RED;    pixelGrid[4][20] = "#B22222";   pixelGrid[5][20] = "#8B1A1A";
-    pixelGrid[3][21] = DARK_RED;
-    // tallo y hoja
-    pixelGrid[1][20] = STEM_BROWN;  pixelGrid[1][21] = STEM_BROWN;  pixelGrid[2][21] = STEM_BROWN;
-    pixelGrid[1][22] = LEAF_GREEN;  pixelGrid[2][22] = LEAF_GREEN;  pixelGrid[1][23] = LEAF_GREEN;
-    pixelGrid[0][22] = LEAF_GREEN;  pixelGrid[0][23] = "#5A6E1A";
-    // brillo
-    pixelGrid[3][19] = "#FF8A6E";   pixelGrid[4][19] = "#FF7A5A";
-    
-    // ---- Símbolos ocultos y detalles ----
-    pixelGrid[5][12] = GOLD_DETAIL; pixelGrid[6][11] = SOFT_WHITE; pixelGrid[6][12] = SOFT_WHITE;
-    pixelGrid[6][13] = SOFT_WHITE;  pixelGrid[7][12] = GOLD_DETAIL; pixelGrid[4][12] = GOLD_DETAIL;
-    pixelGrid[18][2] = SOFT_WHITE;  pixelGrid[18][3] = SOFT_WHITE;  pixelGrid[19][3] = SOFT_WHITE;
-    pixelGrid[20][2] = SOFT_WHITE;  pixelGrid[20][3] = SOFT_WHITE;
-    for (let i = 0; i < 3; i++) {
-      pixelGrid[22][2 + i] = SOFT_WHITE;
-      pixelGrid[23][3 + i] = SOFT_WHITE;
-      pixelGrid[22][21 - i] = SOFT_WHITE;
-      pixelGrid[23][20 - i] = SOFT_WHITE;
-    }
-    pixelGrid[21][22] = "#2C2C3A"; pixelGrid[22][22] = "#3A3A4A"; pixelGrid[21][21] = "#1F1F2E";
-    pixelGrid[8][22] = GOLD_DETAIL; pixelGrid[9][23] = GOLD_DETAIL; pixelGrid[7][21] = GOLD_DETAIL;
-    pixelGrid[13][3] = SOFT_WHITE;  pixelGrid[14][2] = SOFT_WHITE;  pixelGrid[11][23] = SOFT_WHITE;
-    pixelGrid[10][22] = SOFT_WHITE; pixelGrid[19][12] = SOFT_WHITE; pixelGrid[19][13] = SOFT_WHITE;
-    pixelGrid[19][14] = SOFT_WHITE; pixelGrid[18][13] = SOFT_WHITE; pixelGrid[20][13] = SOFT_WHITE;
-    pixelGrid[17][13] = GOLD_DETAIL; pixelGrid[21][13] = GOLD_DETAIL;
-    
-    // ---- Generar box-shadow ----
-    let shadows = [];
-    for (let y = 0; y < 25; y++) {
-      for (let x = 0; x < 25; x++) {
-        const color = pixelGrid[y][x];
-        if (color !== null) {
-          shadows.push(`${x * 20}px ${y * 20}px 0px ${color}`);
-        }
-      }
-    }
-    
-    const pixelContainer = document.getElementById("deathNotePixelArt");
-    if (pixelContainer && shadows.length) {
-      pixelContainer.style.boxShadow = shadows.join(", ");
-      pixelContainer.style.width = "20px";
-      pixelContainer.style.height = "20px";
-      pixelContainer.style.position = "absolute";
-      pixelContainer.style.top = "0";
-      pixelContainer.style.left = "0";
-      pixelContainer.style.background = "transparent";
-    }
-    
-    // Efecto hover sobre el marco
-    const frameDiv = document.querySelector(".frame");
-    if (frameDiv) {
-      frameDiv.addEventListener("mouseenter", () => {
-        frameDiv.style.transition = "box-shadow 0.2s";
-        frameDiv.style.boxShadow = "0 0 0 2px #aa3e2e, 0 25px 40px rgba(0,0,0,0.8), 0 0 15px rgba(200,50,30,0.4)";
-      });
-      frameDiv.addEventListener("mouseleave", () => {
-        frameDiv.style.boxShadow = "0 20px 35px rgba(0,0,0,0.6), 0 0 0 4px #2a2a2a, 0 0 0 8px #111";
-      });
-    }
-  })();
-</script>
 </body>
 </html>
