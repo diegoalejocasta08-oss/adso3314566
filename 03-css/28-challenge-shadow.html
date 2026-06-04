@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Michi - Pixel Art (25x25) | box-shadow challenge</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 30%, #0a0a1a, #000000);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', 'Courier New', monospace;
+      padding: 2rem 1rem;
+    }
+
+    /* Botón home con la ruta solicitada */
+    .btn-home {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      padding: 8px;
+      border-radius: 60px;
+      transition: 0.2s ease;
+      z-index: 100;
+      border: 1px solid rgba(255,255,255,0.2);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-home:hover {
+      background: #c00;
+      transform: scale(1.05);
+      border-color: #ff8888;
+    }
+    .btn-home svg {
+      fill: white;
+      display: block;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      text-align: center;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    header {
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #e0e0e0, #a0a0a0);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(255,50,50,0.3);
+      font-weight: 800;
+    }
+
+    h2 {
+      font-weight: 500;
+      color: #ddd;
+      margin-top: 12px;
+      font-size: 1.2rem;
+      border-bottom: 1px dashed #c44;
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+
+    h2 small {
+      display: block;
+      font-size: 0.75rem;
+      color: #bb9;
+      margin-top: 8px;
+      font-family: monospace;
+      letter-spacing: 1px;
+    }
+
+    /* FRAME: 25x25 grid, each cell = 20px -> 500x500px */
+    .frame {
+      background-color: #000000;
+      width: calc(25 * 20px);
+      height: calc(25 * 20px);
+      margin: 1.5rem auto;
+      position: relative;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.6), 0 0 0 4px #2a2a2a, 0 0 0 8px #111;
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    /* contenedor de píxeles (box-shadow) */
+    .escultura {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 0;
+      left: 0;
+      background: transparent;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* cuadrícula sutil estilo retro */
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(120,120,150,0.12) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(120,120,150,0.12) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    .art-caption {
+      margin-top: 28px;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      color: #f0c0a0;
+      border: 1px solid #ff5733;
+      font-weight: 500;
+    }
+
+    .art-caption span {
+      color: #ff9f6e;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.7rem;
+      opacity: 0.6;
+      color: #aaa;
+    }
+
+    @media (max-width: 580px) {
+      .frame {
+        transform: scale(0.85);
+        margin: 0 auto;
+      }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Botón home con la ruta correcta: "../03-css/" -->
+<a href="../03-css/" class="btn-home" aria-label="home">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256">
+    <path d="M240,208H224V136l2.34,2.34A8,8,0,0,0,237.66,127L139.31,28.68a16,16,0,0,0-22.62,0L18.34,127a8,8,0,0,0,11.32,11.31L32,136v72H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM48,120l80-80,80,80v88H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48Zm96,88H112V160h32Z"/>
+  </svg>
+</a>
+
+<main>
+  <header>
+    <h1>📓 D E A T H · N O T E</h1>
+    <h2>
+      pixel art: the shinigami's notebook
+      <small>✦ 25x25 grid · pure box-shadow ✦</small>
+    </h2>
+  </header>
+
+  <section>
+    <figure class="frame">
+      <div class="escultura" id="deathNotePixelArt"></div>
+      <div class="grid-overlay"></div>
+    </figure>
+    <div class="art-caption">
+      🍎 michi · black edition · gato & runes 🕯️
+    </div>
+  </section>
+  <footer>
+    🖤 25x25 | cada píxel = 20px | cuaderno icónico + "DN" + gato negro
+  </footer>
+</main>
+
+<script>
+  (function() {
+    // ---------- PIXEL ART DEATH NOTE (25x25) ----------
+    const WHITE = "#F0F0F0";
+    const SOFT_WHITE = "#D4D4DC";
+    const RED_APPLE = "#E63E2E";
+    const DARK_RED = "#AA2E1C";
+    const LEAF_GREEN = "#6B8E23";
+    const STEM_BROWN = "#8B5A2B";
+    const GOLD_DETAIL = "#EBC47A";
+    
+    let pixelGrid = Array(25).fill().map(() => Array(25).fill(null));
+    
+    // ---- Bordes (cubierta del cuaderno) ----
+    for (let x = 0; x < 25; x++) {
+      pixelGrid[0][x] = WHITE;
+      pixelGrid[24][x] = WHITE;
+    }
+    for (let y = 0; y < 25; y++) {
+      pixelGrid[y][0] = WHITE;
+      pixelGrid[y][24] = WHITE;
+    }
+    for (let x = 1; x < 24; x++) {
+      pixelGrid[1][x] = SOFT_WHITE;
+      pixelGrid[23][x] = SOFT_WHITE;
+    }
+    for (let y = 1; y < 24; y++) {
+      pixelGrid[y][1] = SOFT_WHITE;
+      pixelGrid[y][23] = SOFT_WHITE;
+    }
+    
+    // ---- Letras "DN" ----
+    // D
+    for (let row = 9; row <= 15; row++) pixelGrid[row][6] = WHITE;
+    for (let col = 6; col <= 10; col++) pixelGrid[9][col] = WHITE;
+    for (let col = 6; col <= 10; col++) pixelGrid[15][col] = WHITE;
+    for (let row = 10; row <= 14; row++) pixelGrid[row][10] = WHITE;
+    pixelGrid[10][9] = WHITE; pixelGrid[11][9] = WHITE; pixelGrid[12][9] = WHITE;
+    pixelGrid[13][9] = WHITE; pixelGrid[14][9] = WHITE;
+    pixelGrid[11][8] = SOFT_WHITE; pixelGrid[12][8] = SOFT_WHITE; pixelGrid[13][8] = SOFT_WHITE;
+    // N
+    for (let row = 9; row <= 15; row++) pixelGrid[row][16] = WHITE;
+    for (let row = 9; row <= 15; row++) pixelGrid[row][20] = WHITE;
+    pixelGrid[9][20] = WHITE; pixelGrid[10][17] = WHITE; pixelGrid[11][18] = WHITE;
+    pixelGrid[12][19] = WHITE; pixelGrid[13][20] = WHITE;
+    for (let row = 10; row <= 14; row++) pixelGrid[row][16] = WHITE;
+    pixelGrid[14][20] = WHITE; pixelGrid[10][18] = SOFT_WHITE; pixelGrid[11][19] = SOFT_WHITE;
+    pixelGrid[13][19] = SOFT_WHITE;
+    
+    // detalles dorados
+    pixelGrid[7][8] = GOLD_DETAIL; pixelGrid[7][18] = GOLD_DETAIL;
+    pixelGrid[17][8] = GOLD_DETAIL; pixelGrid[17][18] = GOLD_DETAIL;
+    
+    // ---- Manzana (Ryuk) ----
+    pixelGrid[2][19] = RED_APPLE;   pixelGrid[2][20] = RED_APPLE;   pixelGrid[2][21] = RED_APPLE;
+    pixelGrid[3][18] = RED_APPLE;   pixelGrid[3][19] = RED_APPLE;   pixelGrid[3][20] = RED_APPLE;
+    pixelGrid[3][21] = RED_APPLE;   pixelGrid[3][22] = RED_APPLE;
+    pixelGrid[4][18] = RED_APPLE;   pixelGrid[4][19] = RED_APPLE;   pixelGrid[4][20] = RED_APPLE;
+    pixelGrid[4][21] = RED_APPLE;   pixelGrid[4][22] = RED_APPLE;
+    pixelGrid[5][18] = RED_APPLE;   pixelGrid[5][19] = RED_APPLE;   pixelGrid[5][20] = RED_APPLE;
+    pixelGrid[5][21] = RED_APPLE;   pixelGrid[5][22] = RED_APPLE;
+    pixelGrid[6][19] = RED_APPLE;   pixelGrid[6][20] = RED_APPLE;   pixelGrid[6][21] = RED_APPLE;
+    pixelGrid[6][18] = DARK_RED;    pixelGrid[3][17] = DARK_RED;    pixelGrid[4][17] = DARK_RED;
+    pixelGrid[2][22] = DARK_RED;    pixelGrid[4][20] = "#B22222";   pixelGrid[5][20] = "#8B1A1A";
+    pixelGrid[3][21] = DARK_RED;
+    // tallo y hoja
+    pixelGrid[1][20] = STEM_BROWN;  pixelGrid[1][21] = STEM_BROWN;  pixelGrid[2][21] = STEM_BROWN;
+    pixelGrid[1][22] = LEAF_GREEN;  pixelGrid[2][22] = LEAF_GREEN;  pixelGrid[1][23] = LEAF_GREEN;
+    pixelGrid[0][22] = LEAF_GREEN;  pixelGrid[0][23] = "#5A6E1A";
+    // brillo
+    pixelGrid[3][19] = "#FF8A6E";   pixelGrid[4][19] = "#FF7A5A";
+    
+    // ---- Símbolos ocultos y detalles ----
+    pixelGrid[5][12] = GOLD_DETAIL; pixelGrid[6][11] = SOFT_WHITE; pixelGrid[6][12] = SOFT_WHITE;
+    pixelGrid[6][13] = SOFT_WHITE;  pixelGrid[7][12] = GOLD_DETAIL; pixelGrid[4][12] = GOLD_DETAIL;
+    pixelGrid[18][2] = SOFT_WHITE;  pixelGrid[18][3] = SOFT_WHITE;  pixelGrid[19][3] = SOFT_WHITE;
+    pixelGrid[20][2] = SOFT_WHITE;  pixelGrid[20][3] = SOFT_WHITE;
+    for (let i = 0; i < 3; i++) {
+      pixelGrid[22][2 + i] = SOFT_WHITE;
+      pixelGrid[23][3 + i] = SOFT_WHITE;
+      pixelGrid[22][21 - i] = SOFT_WHITE;
+      pixelGrid[23][20 - i] = SOFT_WHITE;
+    }
+    pixelGrid[21][22] = "#2C2C3A"; pixelGrid[22][22] = "#3A3A4A"; pixelGrid[21][21] = "#1F1F2E";
+    pixelGrid[8][22] = GOLD_DETAIL; pixelGrid[9][23] = GOLD_DETAIL; pixelGrid[7][21] = GOLD_DETAIL;
+    pixelGrid[13][3] = SOFT_WHITE;  pixelGrid[14][2] = SOFT_WHITE;  pixelGrid[11][23] = SOFT_WHITE;
+    pixelGrid[10][22] = SOFT_WHITE; pixelGrid[19][12] = SOFT_WHITE; pixelGrid[19][13] = SOFT_WHITE;
+    pixelGrid[19][14] = SOFT_WHITE; pixelGrid[18][13] = SOFT_WHITE; pixelGrid[20][13] = SOFT_WHITE;
+    pixelGrid[17][13] = GOLD_DETAIL; pixelGrid[21][13] = GOLD_DETAIL;
+    
+    // ---- Generar box-shadow ----
+    let shadows = [];
+    for (let y = 0; y < 25; y++) {
+      for (let x = 0; x < 25; x++) {
+        const color = pixelGrid[y][x];
+        if (color !== null) {
+          shadows.push(`${x * 20}px ${y * 20}px 0px ${color}`);
+        }
+      }
+    }
+    
+    const pixelContainer = document.getElementById("deathNotePixelArt");
+    if (pixelContainer && shadows.length) {
+      pixelContainer.style.boxShadow = shadows.join(", ");
+      pixelContainer.style.width = "20px";
+      pixelContainer.style.height = "20px";
+      pixelContainer.style.position = "absolute";
+      pixelContainer.style.top = "0";
+      pixelContainer.style.left = "0";
+      pixelContainer.style.background = "transparent";
+    }
+    
+    // Efecto hover sobre el marco
+    const frameDiv = document.querySelector(".frame");
+    if (frameDiv) {
+      frameDiv.addEventListener("mouseenter", () => {
+        frameDiv.style.transition = "box-shadow 0.2s";
+        frameDiv.style.boxShadow = "0 0 0 2px #aa3e2e, 0 25px 40px rgba(0,0,0,0.8), 0 0 15px rgba(200,50,30,0.4)";
+      });
+      frameDiv.addEventListener("mouseleave", () => {
+        frameDiv.style.boxShadow = "0 20px 35px rgba(0,0,0,0.6), 0 0 0 4px #2a2a2a, 0 0 0 8px #111";
+      });
+    }
+  })();
+</script>
+</body>
+</html>
