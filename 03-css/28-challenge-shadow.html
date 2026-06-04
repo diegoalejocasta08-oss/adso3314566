@@ -22,7 +22,7 @@
       padding: 2rem 1rem;
     }
 
-    /* Botón home */
+    /* Botón home con la ruta solicitada */
     .btn-home {
       position: fixed;
       top: 20px;
@@ -101,7 +101,7 @@
       transition: transform 0.2s ease;
     }
 
-    /* Contenedor de píxeles utilizando únicamente CSS (box-shadow) */
+    /* contenedor de píxeles (box-shadow estático) */
     .escultura {
       position: absolute;
       width: 20px;
@@ -112,9 +112,9 @@
       pointer-events: none;
       z-index: 10;
       
-      /* Dibujo detallado renderizado píxel por píxel con CSS puro */
+      /* box-shadow con todos los píxeles detallados del gato + manzana */
       box-shadow:
-        /* === MARCO EXTERIOR BLANCO === */
+        /* === BORDES BLANCOS (marco exterior) === */
         0px 0px 0px #F0F0F0, 20px 0px 0px #F0F0F0, 40px 0px 0px #F0F0F0, 60px 0px 0px #F0F0F0, 80px 0px 0px #F0F0F0, 100px 0px 0px #F0F0F0, 120px 0px 0px #F0F0F0, 140px 0px 0px #F0F0F0, 160px 0px 0px #F0F0F0, 180px 0px 0px #F0F0F0, 200px 0px 0px #F0F0F0, 220px 0px 0px #F0F0F0, 240px 0px 0px #F0F0F0, 260px 0px 0px #F0F0F0, 280px 0px 0px #F0F0F0, 300px 0px 0px #F0F0F0, 320px 0px 0px #F0F0F0, 340px 0px 0px #F0F0F0, 360px 0px 0px #F0F0F0, 380px 0px 0px #F0F0F0, 400px 0px 0px #F0F0F0, 420px 0px 0px #F0F0F0, 440px 0px 0px #F0F0F0, 460px 0px 0px #F0F0F0, 480px 0px 0px #F0F0F0,
         0px 480px 0px #F0F0F0, 20px 480px 0px #F0F0F0, 40px 480px 0px #F0F0F0, 60px 480px 0px #F0F0F0, 80px 480px 0px #F0F0F0, 100px 480px 0px #F0F0F0, 120px 480px 0px #F0F0F0, 140px 480px 0px #F0F0F0, 160px 480px 0px #F0F0F0, 180px 480px 0px #F0F0F0, 200px 480px 0px #F0F0F0, 220px 480px 0px #F0F0F0, 240px 480px 0px #F0F0F0, 260px 480px 0px #F0F0F0, 280px 480px 0px #F0F0F0, 300px 480px 0px #F0F0F0, 320px 480px 0px #F0F0F0, 340px 480px 0px #F0F0F0, 360px 480px 0px #F0F0F0, 380px 480px 0px #F0F0F0, 400px 480px 0px #F0F0F0, 420px 480px 0px #F0F0F0, 440px 480px 0px #F0F0F0, 460px 480px 0px #F0F0F0, 480px 480px 0px #F0F0F0,
         0px 20px 0px #F0F0F0, 0px 40px 0px #F0F0F0, 0px 60px 0px #F0F0F0, 0px 80px 0px #F0F0F0, 0px 100px 0px #F0F0F0, 0px 120px 0px #F0F0F0, 0px 140px 0px #F0F0F0, 0px 160px 0px #F0F0F0, 0px 180px 0px #F0F0F0, 0px 200px 0px #F0F0F0, 0px 220px 0px #F0F0F0, 0px 240px 0px #F0F0F0, 0px 260px 0px #F0F0F0, 0px 280px 0px #F0F0F0, 0px 300px 0px #F0F0F0, 0px 320px 0px #F0F0F0, 0px 340px 0px #F0F0F0, 0px 360px 0px #F0F0F0, 0px 380px 0px #F0F0F0, 0px 400px 0px #F0F0F0, 0px 420px 0px #F0F0F0, 0px 440px 0px #F0F0F0, 0px 460px 0px #F0F0F0,
@@ -158,7 +158,7 @@
         380px 420px 0px #D4D4DC, 420px 420px 0px #D4D4DC, 400px 440px 0px #D4D4DC;
     }
 
-    /* Cuadrícula sutil estilo retro */
+    /* cuadrícula sutil estilo retro */
     .grid-overlay {
       position: absolute;
       inset: 0;
