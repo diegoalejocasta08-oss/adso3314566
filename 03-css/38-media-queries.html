@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38-media-queries</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            transition: all 0.5s ease-in;
+        }
+
+        body {
+            font-family: Poppins;
+            background-color: #003675;                
+            color: #fff;
+            main {
+                padding: 4rem;
+                header {
+                    figure.logo {
+                        /* BASE DESKTOP */
+                        background: url(../imgs/pepsi01.png) no-repeat center;
+                        background-size: contain;
+                        height: 354px;
+                        margin: 0 auto;
+                        width: 919px;
+                        position: relative; /* Necesario para posicionar el texto de la tablet */
+                    }
+                }
+                section {
+                    h1 {
+                        text-align: center;
+                        span.md, span.sm {
+                            display: none;
+                        }
+                    }
+                    p {
+                        margin-block: 4rem;
+                        text-align: justify;
+                        line-height: 2rem;
+                    }
+                }
+            }
+        }
+
+        /* --- MEDIA QUERIES CORREGIDAS --- */
+
+        /* Vista de Tablet (< 1024px) */
+        @media (max-width: 1024px) {
+            body main section h1 span.lg { display: none; }
+            body main section h1 span.md { display: inline-block; }
+            
+            body main header figure.logo {
+                /* Caja cuadrada perfecta para aislar el círculo */
+                width: 250px; 
+                height: 250px; 
+                margin-bottom: 120px; /* Dejamos el espacio libre abajo para la palabra */
+                background-image: url(../imgs/pepsi01.png);
+                background-repeat: no-repeat;
+                /* Escalamos y centramos rígidamente solo el círculo */
+                background-size: 235% auto;
+                background-position: 0px center;
+            }
+
+            /* Creamos una sub-capa dinámica para renderizar la palabra abajo sin romper nada */
+            body main header figure.logo::after {
+                content: "";
+                position: absolute;
+                bottom: -90px; /* Lo empuja exactamente debajo del logo */
+                left: 50%;
+                transform: translateX(-50%); /* Centrado absoluto perfecto */
+                width: 200px;
+                height: 70px;
+                background-image: url(../imgs/pepsi01.png);
+                background-repeat: no-repeat;
+                /* Escalamos y movemos el fondo para mostrar SOLO la palabra "pepsi" limpia */
+                background-size: 200% auto;
+                background-position: right center; 
+                display: block;
+            }
+        }
+
+        /* Vista de Mobile (< 780px) */
+        @media (max-width: 780px) {
+            body main section h1 span.md { display: none; }
+            body main section h1 span.sm { display: inline-block; }
+            
+            body main header figure.logo {
+                /* El círculo crece en formato teléfono */
+                width: 290px; 
+                height: 290px;
+                margin-bottom: 0px;
+                background-image: url(../imgs/pepsi01.png);
+                background-repeat: no-repeat;
+                /* Zoom limpio a la esfera */
+                background-size: 235% auto;
+                background-position: 0px center;
+            }
+
+            /* Hacemos desaparecer por completo la palabra en celular */
+            body main header figure.logo::after {
+                display: none;
+            }
+            
+            body main {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <figure class="logo"></figure>
+        </header>
+        <section>
+            <h1>
+                Media Queries
+                <span class="lg"> (> 1024px) 💻Desktop </span>
+                <span class="md"> (< 1024px) 🖥️Tablet </span>
+                <span class="sm"> (< 780px) 📱Mobile </span>
+            </h1>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro amet unde incidunt voluptate eos accusantium fugit beatae minus itaque, voluptatem commodi harum ratione neque corrupti. Quis ducimus vel ad maiores quasi facere tempore! Praesentium deleniti quisquam autem qui deserunt, fugiat, illo cum repudiandae corrupti aperiam nihil velit ab quae saepe esse neque at officia tenetur quaerat voluptatibus totam officiis consequuntur. In ducimus eaque vero voluptates cupiditate sed alias nulla repudiandae! Dignissimos molestias facilis saepe dolor aliquam. Corrupti, voluptatum? Voluptate animi fugit id quae, vero autem eligendi officiis ex alias aperiam architecto sint repellat ipsam culpa provident aliquam, eaque corrupti voluptates. Deserunt labore deleniti natus, aut esse dignissimos? Corrupti eaque tempore earum eos incidunt architecto quisquam quia. Corrupti sunt molestias unde!
+            </p>
+        </section>
+    </main>
+</body>
+</html>
