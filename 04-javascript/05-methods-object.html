@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05-methods-object</title>
+    
+    <!-- Enlace a tu archivo local de Animate.css -->
+    <link rel="stylesheet" href="animate.css">
+    <!-- Hoja de estilos complementaria de tu proyecto -->
+    <link rel="stylesheet" href="../04-estilos.css">
+
+    <style>
+        /* --- Marco Contenedor Fijo --- */
+        .sprite-box {
+            width: 240px;
+            height: 240px;
+            margin: 1.5rem auto;
+            border: 3px solid #ffd700;
+            border-radius: 1.2rem;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+            background-color: #171717;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- Imagen Interna del Sprite --- */
+        .sprite-img {
+            height: 100%;
+            width: auto;
+            max-width: none;
+            transition: transform 0.1s step-end;
+            will-change: transform;
+        }
+
+        /* Posiciones exactas del sprite sheet */
+        .sprite-normal { transform: translateX(0%); }
+        .sprite-attack { transform: translateX(-25%); }
+        .sprite-feed   { transform: translateX(-50%); }
+        .sprite-dead   { transform: translateX(-75%); }
+
+        /* --- Panel e Interfaz --- */
+        .stats-panel {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .stats-panel span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .actions-menu {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .btn-action {
+            background-color: #ffd700;
+            color: #000000;
+            border: none;
+            border-radius: 0.6rem;
+            padding: 0.8rem 1.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-action:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-action:disabled {
+            background-color: #404040;
+            color: #737373;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botón flotante de inicio -->
+    <a href="../04-javascript/index.html" class="btn-home" title="Inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 256 256">
+            <path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.25a16,16,0,0,1,21.66,0l80,75.25A16,16,0,0,1,224,115.55Z"></path>
+        </svg>
+    </a>
+
+    <header>
+        <h1>Snorlax Virtual</h1>
+        <h2>Panel de Interacción</h2>
+    </header>
+
+    <main>
+        <div class="sprite-box">
+            <img id="snorlax-sprite" src="../imgs/snorlax-sprite.png" alt="Snorlax" class="sprite-img sprite-normal">
+        </div>
+
+        <div class="stats-panel">
+            <p>Puntos de Comida: <span id="feed-count">100</span> / 200</p>
+        </div>
+
+        <div class="actions-menu">
+            <button id="btn-feed" class="btn-action">Feed</button>
+            <button id="btn-attack" class="btn-action">Attack</button>
+        </div>
+    </main>
+
+    <script>
+        // --- CLASE OBJETO: SNORLAX ---
+        class Snorlax {
+            constructor(initialFeed = 100, maxFeed = 200, minFeed = 0) {
+                this.feedPoints = initialFeed;
+                this.maxFeed = maxFeed;
+                this.minFeed = minFeed;
+            }
+
+            feed() {
+                if (this.feedPoints < this.maxFeed) {
+                    this.feedPoints = Math.min(this.maxFeed, this.feedPoints + 25);
+                    return true;
+                }
+                return false;
+            }
+
+            receiveAttack() {
+                if (this.feedPoints > this.minFeed) {
+                    this.feedPoints = Math.max(this.minFeed, this.feedPoints - 25);
+                    return true;
+                }
+                return false;
+            }
+
+            isDead() {
+                return this.feedPoints <= this.minFeed;
+            }
+
+            isFull() {
+                return this.feedPoints >= this.maxFeed;
+            }
+
+            getPoints() {
+                return this.feedPoints;
+            }
+        }
+
+        // --- CLASE OBJETO: UI (Integra las clases de Animate.css) ---
+        class UIManager {
+            constructor(snorlaxInstance) {
+                this.pet = snorlaxInstance;
+                
+                this.sprite = document.getElementById('snorlax-sprite');
+                this.feedCountEl = document.getElementById('feed-count');
+                this.btnFeed = document.getElementById('btn-feed');
+                this.btnAttack = document.getElementById('btn-attack');
+                
+                this.actionTimeout = null;
+
+                this.initEvents();
+                this.updateUI();
+            }
+
+            initEvents() {
+                this.btnFeed.addEventListener('click', () => this.handleFeed());
+                this.btnAttack.addEventListener('click', () => this.handleAttack());
+            }
+
+            handleFeed() {
+                if (this.pet.feed()) {
+                    this.updateUI();
+                    // Aplica 'animate__bounce' de Animate.css al alimentar
+                    this.triggerAnimation('sprite-feed', 'animate__bounce');
+                }
+            }
+
+            handleAttack() {
+                if (this.pet.receiveAttack()) {
+                    this.updateUI();
+                    // Aplica 'animate__shakeX' de Animate.css al atacar
+                    this.triggerAnimation('sprite-attack', 'animate__shakeX');
+                }
+            }
+
+            triggerAnimation(spriteState, animateClass) {
+                clearTimeout(this.actionTimeout);
+
+                // Asignamos las clases base de Animate.css junto con la pose del sprite
+                this.sprite.className = `sprite-img ${spriteState} animate__animated ${animateClass}`;
+
+                if (this.pet.isDead()) {
+                    // Si cae debilitado, aplica 'animate__flash' de Animate.css
+                    this.sprite.className = 'sprite-img sprite-dead animate__animated animate__flash';
+                    return;
+                }
+
+                // Reseteamos a la animación normal al finalizar
+                this.actionTimeout = setTimeout(() => {
+                    this.sprite.className = 'sprite-img sprite-normal';
+                }, 800);
+            }
+
+            updateUI() {
+                this.feedCountEl.textContent = this.pet.getPoints();
+                this.btnFeed.disabled = this.pet.isFull();
+                this.btnAttack.disabled = this.pet.isDead();
+            }
+        }
+
+        // --- INSTANCIACIÓN DE OBJETOS ---
+        const snorlaxPet = new Snorlax(100, 200, 0);
+        const appUI = new UIManager(snorlaxPet);
+    </script>
+</body>
+</html>
