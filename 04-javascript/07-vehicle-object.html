@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspección de Vehículos - Figma</title>
+    
+    <!-- Librería externa de animaciones CSS -->
+    <link rel="stylesheet" href="animate.css">
+    <!-- Hoja de estilos del proyecto -->
+    <link rel="stylesheet" href="../04-estilos.css">
+
+    <style>
+        /* --- Panel Contenedor de Figma --- */
+        .figma-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 2px solid #333;
+            background-color: #1e1e1e;
+        }
+
+        .figma-iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            display: block;
+        }
+
+        /* --- Panel de Controles --- */
+        .controls-panel {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .btn-action {
+            background-color: #0df0a6;
+            color: #000000;
+            border: none;
+            border-radius: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(13, 240, 166, 0.4);
+        }
+
+        /* Responsive para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .figma-iframe {
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botón flotante de regreso a la zona principal -->
+    <a href="../04-javascript/index.html" class="btn-home" title="Inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 256 256">
+            <path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.25a16,16,0,0,1,21.66,0l80,75.25A16,16,0,0,1,224,115.55Z"></path>
+        </svg>
+    </a>
+
+    <header class="07-vehicle-object">
+        <h1>Mockup de Vehículos</h1>
+        <h2>Visor Interactivo de Diseños</h2>
+    </header>
+
+    <main>
+        <!-- Panel de control interactivo -->
+        <div class="controls-panel">
+            <button id="btn-reload" class="btn-action">Recargar Visor</button>
+        </div>
+
+        <!-- Incrustación del prototipo Figma -->
+        <div id="figma-wrapper" class="figma-container animate__animated animate__fadeInUp">
+            <iframe 
+                id="figma-frame"
+                class="figma-iframe"
+                src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FYTNIalNrBhUS9fBmIJ11ta%2FMOCKUP-VEHICULOS%3Fnode-id%3D0-1%26t%3DH6RmtIvJhzWau9Bk-1" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </main>
+
+    <script>
+        // --- OBJETO DOMINIO: INSPECTOR ---
+        class VehicleInspector {
+            constructor(figmaUrl) {
+                this.url = figmaUrl;
+                this.reloadCount = 0;
+            }
+
+            registerReload() {
+                this.reloadCount++;
+                return this.reloadCount;
+            }
+
+            getUrl() {
+                return this.url;
+            }
+        }
+
+        // --- OBJETO INTERFAZ: UI MANAGER ---
+        class InspectorUIManager {
+            constructor(inspectorInstance) {
+                this.inspector = inspectorInstance;
+                
+                // Elementos del DOM
+                this.iframe = document.getElementById('figma-frame');
+                this.container = document.getElementById('figma-wrapper');
+                this.btnReload = document.getElementById('btn-reload');
+
+                this.initEvents();
+            }
+
+            initEvents() {
+                this.btnReload.addEventListener('click', () => this.handleReload());
+            }
+
+            handleReload() {
+                this.inspector.registerReload();
+                
+                // Efecto visual con Animate.css al recargar
+                this.container.classList.remove('animate__fadeInUp');
+                this.container.classList.add('animate__pulse');
+
+                // Recargar el iframe
+                this.iframe.src = this.iframe.src;
+
+                // Resetear animación de CSS
+                setTimeout(() => {
+                    this.container.classList.remove('animate__pulse');
+                }, 1000);
+            }
+        }
+
+        // --- INSTANCIACIÓN POO ---
+        const figmaTarget = "https://www.figma.com/design/YTNIalNrBhUS9fBmIJ11ta/MOCKUP-VEHICULOS?node-id=0-1&t=H6RmtIvJhzWau9Bk-1";
+        const inspectorApp = new VehicleInspector(figmaTarget);
+        const appUI = new InspectorUIManager(inspectorApp);
+    </script>
+</body>
+</html>
