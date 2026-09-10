@@ -3,152 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inspección de Vehículos - Figma</title>
+    <title>Showroom Koenigsegg - Modo Nocturno</title>
     
-    <!-- Librería externa de animaciones CSS -->
+    <!-- Animaciones CSS externas -->
     <link rel="stylesheet" href="animate.css">
-    <!-- Hoja de estilos del proyecto -->
     <link rel="stylesheet" href="../04-estilos.css">
 
     <style>
-        /* --- Panel Contenedor de Figma --- */
-        .figma-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 2rem auto;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            border: 2px solid #333;
-            background-color: #1e1e1e;
+        :root {
+            --bg-color: #1a1c1e;
+            --panel-bg: #2b2d31;
+            --button-bg: #383a40;
+            --accent-color: #ffd700;
+            --text-color: #ffffff;
         }
 
-        .figma-iframe {
-            width: 100%;
-            height: 700px;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* --- MARCO MÓVIL DEL MOCKUP --- */
+        .phone-container {
+            width: 360px;
+            background-color: var(--panel-bg);
+            border-radius: 16px;
+            border: 3px solid #404249;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-sizing: border-box;
+        }
+
+        /* --- FILA SUPERIOR: LOGO Y MODO --- */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            background-color: #ffffff;
+            padding: 6px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+        }
+
+        .brand-logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .mode-badge {
+            background-color: var(--button-bg);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #f1c40f;
+        }
+
+        /* --- NAVEGACIÓN MARCA --- */
+        .brand-selector {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background-color: var(--button-bg);
             border: none;
-            display: block;
-        }
-
-        /* --- Panel de Controles --- */
-        .controls-panel {
-            text-align: center;
-            margin: 1.5rem 0;
-        }
-
-        .btn-action {
-            background-color: #0df0a6;
-            color: #000000;
-            border: none;
-            border-radius: 0.6rem;
-            padding: 0.8rem 1.8rem;
-            font-weight: 700;
-            font-size: 1rem;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.75rem;
         }
 
-        .btn-action:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(13, 240, 166, 0.4);
+        .brand-title {
+            flex-grow: 1;
+            background-color: var(--button-bg);
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-radius: 8px;
         }
 
-        /* Responsive para pantallas pequeñas */
-        @media (max-width: 768px) {
-            .figma-iframe {
-                height: 450px;
-            }
+        /* --- FILA ESPECIFICACIONES --- */
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .spec-card {
+            background-color: var(--button-bg);
+            padding: 10px 5px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* --- SCENE Y ANIMACIÓN DEL VEHÍCULO --- */
+        .stage {
+            height: 220px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #030814 0%, #0c1a30 70%, #111 100%);
+            border: 1px solid #1a2332;
+        }
+
+        .moon {
+            position: absolute;
+            top: 20px;
+            left: 70px;
+            width: 30px;
+            height: 30px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #e2e8f0;
+        }
+
+        .mountain {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            height: 80px;
+            background: #091727;
+            clip-path: polygon(0% 100%, 20% 40%, 45% 80%, 70% 20%, 100% 100%);
+        }
+
+        .road {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            background: #111111;
+            border-top: 2px solid #333333;
+        }
+
+        .road-line {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, #f1c40f 0 15px, transparent 15px 30px);
+        }
+
+        .car {
+            position: absolute;
+            bottom: 8px;
+            left: 50px;
+            width: 170px;
+            transition: left 0.1s linear, opacity 0.3s;
+        }
+
+        /* Estados del vehículo */
+        .car-off { opacity: 0.3; }
+        .car-engine-on { opacity: 1; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4)); }
+
+        /* --- PANEL DE CONTROLES INFERIORES --- */
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+
+        .ctrl-btn {
+            background-color: var(--button-bg);
+            border: none;
+            color: #ffffff;
+            padding: 10px 2px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.7rem;
+            gap: 4px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .ctrl-btn:hover {
+            background-color: #4a4d54;
+        }
+
+        .ctrl-btn:active {
+            transform: scale(0.95);
+        }
+
+        .ctrl-btn.active {
+            background-color: #27ae60;
         }
     </style>
 </head>
 <body>
 
-    <!-- Botón flotante de regreso a la zona principal -->
+    <!-- Botón flotante para regresar a la zona principal -->
     <a href="../04-javascript/index.html" class="btn-home" title="Inicio">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 256 256">
             <path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.25a16,16,0,0,1,21.66,0l80,75.25A16,16,0,0,1,224,115.55Z"></path>
         </svg>
     </a>
 
-    <header class="07-vehicle-object">
-        <h1>Mockup de Vehículos</h1>
-        <h2>Visor Interactivo de Diseños</h2>
-    </header>
-
-    <main>
-        <!-- Panel de control interactivo -->
-        <div class="controls-panel">
-            <button id="btn-reload" class="btn-action">Recargar Visor</button>
+    <!-- CONTENEDOR TIPO MÓVIL DEL MOCKUP -->
+    <div class="phone-container animate__animated animate__fadeIn">
+        
+        <!-- Fila Encabezado -->
+        <div class="top-bar">
+            <div class="brand-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Koenigsegg_logo.svg/1200px-Koenigsegg_logo.svg.png" alt="Koenigsegg Logo">
+            </div>
+            <div class="mode-badge">
+                🌙 Mode
+            </div>
         </div>
 
-        <!-- Incrustación del prototipo Figma -->
-        <div id="figma-wrapper" class="figma-container animate__animated animate__fadeInUp">
-            <iframe 
-                id="figma-frame"
-                class="figma-iframe"
-                src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FYTNIalNrBhUS9fBmIJ11ta%2FMOCKUP-VEHICULOS%3Fnode-id%3D0-1%26t%3DH6RmtIvJhzWau9Bk-1" 
-                allowfullscreen>
-            </iframe>
+        <!-- Navegación Marca -->
+        <div class="brand-selector">
+            <button class="nav-btn">
+                <span>◀</span>
+                <span>Prev</span>
+            </button>
+            <div class="brand-title">KOENIGSEGG</div>
+            <button class="nav-btn">
+                <span>▶</span>
+                <span>Next</span>
+            </button>
         </div>
-    </main>
+
+        <!-- Especificaciones -->
+        <div class="spec-grid">
+            <div class="spec-card">
+                <span>🏎️</span>
+                <strong>JESKO</strong>
+            </div>
+            <div class="spec-card">
+                <span>⚙️</span>
+                <strong>Refer</strong>
+            </div>
+            <div class="spec-card">
+                <span>🎨</span>
+                <strong>BLANCO</strong>
+            </div>
+        </div>
+
+        <!-- Escenario Interactivo -->
+        <div class="stage">
+            <div class="moon"></div>
+            <div class="mountain"></div>
+            <div class="road">
+                <div class="road-line"></div>
+            </div>
+            <img id="car-element" class="car car-off" src="https://purepng.com/public/uploads/large/purepng.com-white-koenigsegg-agera-rs-carcarautomobilevehicletransportkoenigsegg-331527756778fll87.png" alt="Koenigsegg Jesko">
+        </div>
+
+        <!-- Controles de Movimiento (Bottom) -->
+        <div class="controls-grid">
+            <button id="btn-on" class="ctrl-btn">
+                <span>⏁</span>
+                <span>On</span>
+            </button>
+            <button id="btn-forw" class="ctrl-btn">
+                <span>➔</span>
+                <span>Forw</span>
+            </button>
+            <button id="btn-stop" class="ctrl-btn">
+                <span>⏹</span>
+                <span>Stop</span>
+            </button>
+            <button id="btn-back" class="ctrl-btn">
+                <span>⬅</span>
+                <span>Back</span>
+            </button>
+            <button id="btn-off" class="ctrl-btn">
+                <span>⏻</span>
+                <span>Off</span>
+            </button>
+        </div>
+
+    </div>
 
     <script>
-        // --- OBJETO DOMINIO: INSPECTOR ---
-        class VehicleInspector {
-            constructor(figmaUrl) {
-                this.url = figmaUrl;
-                this.reloadCount = 0;
+        // --- CLASE OBJETO: VEHICLE ---
+        class Vehicle {
+            constructor() {
+                this.isEngineOn = false;
+                this.positionX = 50; // Posición inicial en píxeles
+                this.speed = 0; // Velocidad de movimiento
+                this.maxRight = 160;
+                this.maxLeft = 0;
             }
 
-            registerReload() {
-                this.reloadCount++;
-                return this.reloadCount;
+            turnOn() {
+                this.isEngineOn = true;
             }
 
-            getUrl() {
-                return this.url;
+            turnOff() {
+                this.isEngineOn = false;
+                this.speed = 0;
+            }
+
+            moveForward() {
+                if (this.isEngineOn) {
+                    this.speed = 4;
+                }
+            }
+
+            moveBackward() {
+                if (this.isEngineOn) {
+                    this.speed = -4;
+                }
+            }
+
+            stop() {
+                this.speed = 0;
+            }
+
+            updatePosition() {
+                if (this.speed !== 0) {
+                    this.positionX += this.speed;
+                    // Límites de la carretera
+                    if (this.positionX > this.maxRight) this.positionX = this.maxRight;
+                    if (this.positionX < this.maxLeft) this.positionX = this.maxLeft;
+                }
+                return this.positionX;
             }
         }
 
-        // --- OBJETO INTERFAZ: UI MANAGER ---
-        class InspectorUIManager {
-            constructor(inspectorInstance) {
-                this.inspector = inspectorInstance;
+        // --- CLASE OBJETO: UI CONTROLLER ---
+        class ShowroomUI {
+            constructor(vehicle) {
+                this.car = vehicle;
                 
-                // Elementos del DOM
-                this.iframe = document.getElementById('figma-frame');
-                this.container = document.getElementById('figma-wrapper');
-                this.btnReload = document.getElementById('btn-reload');
+                // Elementos DOM
+                this.carEl = document.getElementById('car-element');
+                this.btnOn = document.getElementById('btn-on');
+                this.btnForw = document.getElementById('btn-forw');
+                this.btnStop = document.getElementById('btn-stop');
+                this.btnBack = document.getElementById('btn-back');
+                this.btnOff = document.getElementById('btn-off');
 
+                this.loopId = null;
                 this.initEvents();
+                this.startAnimationLoop();
             }
 
             initEvents() {
-                this.btnReload.addEventListener('click', () => this.handleReload());
+                this.btnOn.addEventListener('click', () => this.handleOn());
+                this.btnOff.addEventListener('click', () => this.handleOff());
+                this.btnForw.addEventListener('click', () => this.handleForw());
+                this.btnBack.addEventListener('click', () => this.handleBack());
+                this.btnStop.addEventListener('click', () => this.handleStop());
             }
 
-            handleReload() {
-                this.inspector.registerReload();
-                
-                // Efecto visual con Animate.css al recargar
-                this.container.classList.remove('animate__fadeInUp');
-                this.container.classList.add('animate__pulse');
+            handleOn() {
+                this.car.turnOn();
+                this.carEl.className = 'car car-engine-on animate__animated animate__pulse';
+            }
 
-                // Recargar el iframe
-                this.iframe.src = this.iframe.src;
+            handleOff() {
+                this.car.turnOff();
+                this.carEl.className = 'car car-off';
+            }
 
-                // Resetear animación de CSS
-                setTimeout(() => {
-                    this.container.classList.remove('animate__pulse');
-                }, 1000);
+            handleForw() {
+                if (this.car.isEngineOn) {
+                    this.car.moveForward();
+                }
+            }
+
+            handleBack() {
+                if (this.car.isEngineOn) {
+                    this.car.moveBackward();
+                }
+            }
+
+            handleStop() {
+                this.car.stop();
+            }
+
+            startAnimationLoop() {
+                const animate = () => {
+                    const newPos = this.car.updatePosition();
+                    this.carEl.style.left = `${newPos}px`;
+                    this.loopId = requestAnimationFrame(animate);
+                };
+                animate();
             }
         }
 
         // --- INSTANCIACIÓN POO ---
-        const figmaTarget = "https://www.figma.com/design/YTNIalNrBhUS9fBmIJ11ta/MOCKUP-VEHICULOS?node-id=0-1&t=H6RmtIvJhzWau9Bk-1";
-        const inspectorApp = new VehicleInspector(figmaTarget);
-        const appUI = new InspectorUIManager(inspectorApp);
+        const jeskoVehicle = new Vehicle();
+        const appUI = new ShowroomUI(jeskoVehicle);
     </script>
 </body>
 </html>
