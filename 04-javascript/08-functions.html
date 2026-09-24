@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08-functions</title>
+    <link rel="stylesheet" href="../04-estilos.css">
+</head>
+<style>
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.4rem;
+            strong,
+            output {
+                font-size: 1.6rem;
+            }
+            input {
+                border-radius: 0.4rem;
+                border: none;
+                padding: 0.4rem;
+                width: 100px;
+            }
+        }
+        h4 {
+            font-size: 1.4rem;
+            margin-block: 1.2rem;
+        }
+</style>
+<body>
+    <!-- Botón flotante de regreso a la zona principal -->
+    <a href="../04-javascript/index.html" class="btn-home" title="Inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 256 256">
+            <path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.25a16,16,0,0,1,21.66,0l80,75.25A16,16,0,0,1,224,115.55Z"></path>
+        </svg>
+    </a>
+
+    <section>
+            <h3>01- Function without params/args</h3>
+            <h4 class="greeting"></h4>
+            <h3>02- Function with params/args</h3>
+            <form>
+                <input type="number" id="n1" min="1" max="999" placeholder="Number 1">
+                <strong>+</strong>
+                <input type="number" id="n2" min="1" max="999" placeholder="Number 2">
+                <strong>=</strong>
+                <output></output>
+            </form>
+            <h3>03- Function return value</h3>
+            <h4 class="time"></h4>
+        </section>
+</body>
+<script>
+  //elements
+    const greeting  = document.querySelector('.greeting');
+    const n1 = document.querySelector('#n1');
+    const n2  = document.querySelector('#n2');
+    const output = document.querySelector('output'); 
+    const time = document.querySelector('.time');
+    
+    //function 
+    function showGreeting() {
+        greeting.textContent = ' hello javascript';
+    }
+
+    showGreeting(); 
+
+    // 02-functions 
+    function showSum(n1 = 1, n2 = 0){
+        output.textContent = Number(n1) + Number(n2);
+    }
+
+    //event (Aquí usas tus constantes n1 y n2 para escuchar cuando el usuario escriba)
+    n1.addEventListener('input', () => {
+        showSum(n1.value, n2.value);
+    });
+
+    n2.addEventListener('input', () => {
+        showSum(n1.value, n2.value);
+    });
+
+    // 03-function return value
+    function showtime() {
+        const ndate = new Date();
+        // thernary operator (x = 2) ? 'true' : 'false';
+        const meridian = (parseInt(ndate.getHours()) <= 12) ? 'am' : 'pm';
+        return `${ndate.getHours()}:${ndate.getMinutes()} ${meridian}`;
+    }
+    time.textContent = showtime();
+    time.style.zoom = 2;
+
+</script>
+</html>

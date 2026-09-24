@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09-challenge-calculator</title>
+    <link rel="stylesheet" href="../04-estilos.css">
+</head>
+<style>
+        table.operators {
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin: 40px auto;
+            width: 380px;
+        }
+        table thead th {
+            background-color: #f0db4f;
+            color: #000c;
+        }
+        table th,
+        table td {
+            background-color: #fffc;
+            border: 1px solid #333;
+            color: #333;
+            padding: 6px;
+        }
+        table thead input {
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            padding: 8px;
+            width: 120px;
+        }
+        table tbody td:first-child {
+            font-size: 1rem;
+            text-align: center;
+        }
+        table tbody tr:nth-child(even) td {
+            background-color: #fff8;
+        }
+</style>
+<body>
+    <!-- Botón de regreso a la zona principal -->
+    <a href="../04-javascript/index.html" class="btn-home" title="Inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 256 256">
+            <path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.25a16,16,0,0,1,21.66,0l80,75.25A16,16,0,0,1,224,115.55Z"></path>
+        </svg>
+    </a>
+
+    <section>
+            <table class="operators">
+                <thead>
+                    <tr>
+                        <th colspan="5">
+                            <input type="number" placeholder="Y Value">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Operator</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                        <th>Y</th>
+                        <th>X</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>+</td>
+                        <td>Addition</td>
+                        <td>x=y+2</td>
+                        <td class="ry"></td>
+                        <td class="rx"></td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td>Substraction</td>
+                        <td>x=y-2</td>
+                        <td class="ry"></td>
+                        <td class="rx"></td>
+                    </tr>
+                    <tr>
+                        <td>*</td>
+                        <td>Product</td>
+                        <td>x=y*2</td>
+                        <td class="ry"></td>
+                        <td class="rx"></td>
+                    </tr>
+                    <tr>
+                        <td>/</td>
+                        <td>Division</td>
+                        <td>x=y/2</td>
+                        <td class="ry"></td>
+                        <td class="rx"></td>
+                    </tr>
+                    <tr>
+                        <td>%</td>
+                        <td>Modulus</td>
+                        <td>x=y%2</td>
+                        <td class="ry"></td>
+                        <td class="rx"></td>
+                    </tr>
+                    <tr>
+                        <td>++</td>
+                        <td>Increment(pre)</td>
+                        <td>x=++y</td>
+                        <td class="ry"></td>
+                        <td class="rx"></td>
+                    </tr>
+                    <tr>
+                        <td>++</td>
+                        <td>Increment(post)</td>
+                        <td>x=y++</td>
+                        <td class="ry"></td>
+                        <td class="rx"></td>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>Decrement(pre)</td>
+                        <td>x=--y</td>
+                        <td class="ry"></td>
+                        <td class="rx"></td>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>Decrement(post)</td>
+                        <td>x=y--</td>
+                        <td class="ry"></td>
+                        <td class="rx"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <script>
+        // results
+        const ry    = document.querySelectorAll('td.ry')
+        const rx    = document.querySelectorAll('td.rx')
+        const input = document.querySelector('input')
+        // Events
+        input.oninput = () => {
+            if (input.value != '') {
+                if (input.value.length < 4) {
+                    const val = parseInt(input.value)
+
+                    // Adition +
+                    ry[0].innerText = val
+                    rx[0].innerText = val + 2
+
+                    // Substraction -
+                    ry[1].innerText = val
+                    rx[1].innerText = val - 2
+
+                    // Product *
+                    ry[2].innerText = val
+                    rx[2].innerText = val * 2
+
+                    // Division /
+                    ry[3].innerText = val
+                    rx[3].innerText = (val / 2).toFixed(1)
+
+                    // Modulus %
+                    ry[4].innerText = val
+                    rx[4].innerText = val % 2
+
+                    // Increment(pre) x = ++y
+                    let yPreInc = val
+                    let xPreInc = ++yPreInc
+                    ry[5].innerText = yPreInc
+                    rx[5].innerText = xPreInc
+
+                    // Increment(post) x = y++
+                    let yPostInc = val
+                    let xPostInc = yPostInc++
+                    ry[6].innerText = yPostInc
+                    rx[6].innerText = xPostInc
+
+                    // Decrement(pre) x = --y
+                    let yPreDec = val
+                    let xPreDec = --yPreDec
+                    ry[7].innerText = yPreDec
+                    rx[7].innerText = xPreDec
+
+                    // Decrement(post) x = y--
+                    let yPostDec = val
+                    let xPostDec = yPostDec--
+                    ry[8].innerText = yPostDec
+                    rx[8].innerText = xPostDec
+
+                } else {
+                    input.value = input.value.slice(0,-1)
+                }
+            } else {
+                for (let i = 0; i < ry.length; i++) {
+                    ry[i].innerText = ''
+                    rx[i].innerText = ''
+                }
+            }
+        }
+    </script>
+</body>
+</html>
